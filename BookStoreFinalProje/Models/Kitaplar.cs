@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
@@ -29,9 +30,14 @@ public partial class Kitaplar
     [StringLength(1000)]
     public string? KitapAciklama { get; set; }
 
-    [StringLength(100)]
-    [Unicode(false)]
+    [Column(TypeName = "varchar(100)")]
+
+    [DisplayName("image full name")]
     public string? KitapFoto { get; set; }
+
+    [NotMapped]
+    [DisplayName("upload image file")]
+    public IFormFile ImageFile { get; set; }
 
     [StringLength(50)]
     public string? YazarAdi { get; set; }

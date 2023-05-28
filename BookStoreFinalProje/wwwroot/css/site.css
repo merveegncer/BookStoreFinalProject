@@ -1,18 +1,165 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
+
+font {
+    font-family: font-family: 'Playfair Display', serif;
+}
+
+.sc_item_title_text {
+    padding: 0 0 20px 0;
+}
+
+
+
+.card {
+    height: 100%;
+}
+
+.image-wrapper {
+    max-height: 200px; /* Maksimum yükseklik deðerini istediðiniz þekilde ayarlayýn */
+    overflow: hidden;
+}
+
+    .image-wrapper img {
+        width: 100%;
+        height: auto;
+    }
+
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
+.container {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+
 body {
-  margin-bottom: 60px;
+    margin-bottom: 0;
+    padding: 20px;
+}
+
+
+.navbar {
+    height: 60px;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.white-navbar {
+    background-color: #ffffff;
+}
+
+.black-navbar {
+    background-color: #000000;
+    margin-top: 60px; /* Beyaz navbar'ýn altýnda 60 piksel boþluk býrakýr */
+}
+
+
+
+
+
+.book {
+    text-align: center;
+    margin-bottom: 20;
+}
+
+    .book img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+.section-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.card {
+    border-radius: 10px;
+}
+
+.card-image {
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.card-title {
+    margin-bottom: 0;
+    color: white;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+
+
+
+.button-card {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+    .button-card:hover {
+        background-color: rgba(255, 105, 180, 0.4);
+        color: #ffffff;
+    }
+
+
+
+
+.card-category-1 {
+    background-color: #a17979;
+}
+
+.card-category-2 {
+    background-color: #beb3bd;
+}
+
+.card-category-3 {
+    background-color: #9f7d9a;
+}
+
+.card-category-4 {
+    background-color: #5d5b5c;
+}
+
+.card-category-5 {
+    background-color: #823551;
+}
+
+.card-category-6 {
+    background-color: #d18787;
+}
+
+.card-category-7 {
+    background-color: #c2aca9;
+}
+
+.card-category-8 {
+    background-color: #44789b;
 }

@@ -2,7 +2,184 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .welcome-section {
+        position: page;
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/image/kutuphane2.jpg") no-repeat;
+        height: 600px;
+        width: 100%;
+        background-size: cover;
+    }
+
+    * {
+        margin: 0;
+    }
+
+    .welcome-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .welcome-text {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #000000;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 100px;
+    }
+
+        .button:hover {
+            background-color: #555555;
+        }
+
+    .card {
+        border-radius: 10px;
+    }
+</style>
+
+
+<div class="welcome-section">
+    <div class="welcome-text">
+        <p style=" margin: 50px">Etkileyici Hikayeler ve Öğretici Kitaplarla Hayatınızı Zenginleştirin!</p>
+
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 60px; text-align: center;">Kitaplarla Hayatınıza Değer Katın</h1>
+
+        <div>
+            <a href="/kitaplars" class="button">Tum kitaplari Kesfet</a>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-5">
+    <div class="container-fluid" style="margin-top: 200px; margin-bottom: 50px;">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 60px; text-align: center;">Yeni ve Popüler</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <a href="KategoriSayfalar/Roman">
+                <div class="card card-category-1">
+                    <div class="card-image">
+                        <img src="~/image/RomanFoto.jpg" class="card-img-top" alt="Category 1 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Roman" class="button-card"> Roman</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category2/Index">
+                <div class="card card-category-2">
+                    <div class="card-image">
+                        <img src="~/image/Egitim.jpg" class="card-img-top" alt="Category 2 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Egitim" class="button-card">Egitim</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category3/Index">
+                <div class="card card-category-3">
+                    <div class="card-image">
+                        <img src="~/image/KisiselGelisim.jpg" class="card-img-top" alt="Category 3 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/KisiselGelisim" class="button-card">Kisisel Gelisim</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category4/Index">
+                <div class="card card-category-4">
+                    <div class="card-image">
+                        <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 1 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Tarih" class="button-card">Tarih</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <a href="Category5/Index">
+                <div class="card card-category-5">
+                    <div class="card-image">
+                        <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 5 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Din" class="button-card">Din</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category6/Index">
+                <div class="card card-category-6">
+                    <div class="card-image">
+                        <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 6 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Felsefe" class="button-card">Felsefe</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category7/Index">
+                <div class="card card-category-7">
+                    <div class="card-image">
+                        <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 7 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/BilimTeknoloji" class="button-card">Bilim Teknoloji</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="Category8/Index">
+                <div class="card card-category-8">
+                    <div class="card-image">
+                        <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 8 Image">
+                    </div>
+                    <div class="card-body">
+                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Roman" class="button-card">Category 1</a>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 </div>

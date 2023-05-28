@@ -3,16 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BookStoreFinalProje</title>
+    <title>@ViewData["Title"] KÜTÜPHANE</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BookStoreFinalProje.styles.css" asp-append-version="true" />
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
+
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom ">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStoreFinalProje</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KÜTÜPHANE</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,20 +32,43 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Kitaplars" asp-action="Index">Kitaplars</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AltKategorilers" asp-action="Index">AltKategorilers</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kategoriler
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="Roman">Roman</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="egitim">Okul/Sinav Hazirlik</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="KisiselGelisim">KisiselGelisim</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="Tarih">Tarih</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="Din">Din</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="Felsefe">Felsefe</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="KategoriSayfalar" asp-action="BilimTeknoloji">Bilim/Teknoloji</a>
+
+
+                                <!-- Add more categories as needed -->
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Account" asp-action="Login">Admin Login</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container-fluid" style=padding-bottom:50px>
+        @RenderBody()
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - BookStoreFinalProje - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - BookStoreFinalProje- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

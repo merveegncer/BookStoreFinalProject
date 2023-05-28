@@ -47,7 +47,7 @@ namespace BookStoreFinalProje.Controllers
         // GET: AltKategorilers/Create
         public IActionResult Create()
         {
-            ViewData["KategoriId"] = new SelectList(_context.Kategorilers, "KategoriId", "KategoriId");
+            ViewData["KategoriId"] = new SelectList(_context.Kategorilers, "KategoriId", "KategoriAdi");
             return View();
         }
 
