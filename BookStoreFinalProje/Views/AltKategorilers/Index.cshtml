@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BookStoreFinalProje.Models.AltKategoriler>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AltKategoriAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kategori)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AltKategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategori.KategoriId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AltKategoriId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AltKategoriId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AltKategoriId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
