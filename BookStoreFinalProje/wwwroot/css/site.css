@@ -163,3 +163,32 @@ body {
 .card-category-8 {
     background-color: #44789b;
 }
+
+.header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fade-in-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
