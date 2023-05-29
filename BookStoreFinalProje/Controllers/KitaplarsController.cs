@@ -38,9 +38,21 @@ namespace BookStoreFinalProje.Controllers
             }
             var kitaplar = await kitaplarQuery.ToListAsync();
 
+            // SelectList için ViewBag'a geçerli verileri atayın
+            ViewBag.Kategoriler = new SelectList(_context.Kategorilers, "KategoriId", "KategoriAdi");
 
             return View(kitaplar);
         }
+
+
+
+        public IActionResult GetAltKategoriler(int kategoriId)
+        {
+            var altKategoriler = _context.AltKategorilers.Where(a => a.KategoriId == kategoriId).ToList();
+            return Json(altKategoriler);
+        }
+
+
 
 
         // GET: Kitaplars/Details/5
