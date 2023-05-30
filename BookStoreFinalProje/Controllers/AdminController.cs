@@ -6,63 +6,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStoreFinalProje.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStoreFinalProje.Controllers
+
 {
 
-    public class KitaplarsController : Controller
+    [Authorize]
+    public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;
-        private readonly IWebHostEnvironment _hostEnvironment;
 
-        
-        public KitaplarsController(BookStoreDbContext context, IWebHostEnvironment hostEnvironment)
+        public AdminController(BookStoreDbContext context)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
         }
 
-        // GET: Kitaplars
-        public async Task<IActionResult> Index(int? AltKategoriId, string SearchString, string SearchString2)
+        // GET: Admin
+        public async Task<IActionResult> Index()
         {
-            IQueryable<Kitaplar> kitaplarQuery = _context.Kitaplars.Include(k => k.AltKategori);
-            ViewBag.AltKategoriId = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriAdi");
-
-            if (AltKategoriId.HasValue)
-            {
-                kitaplarQuery = kitaplarQuery.Where(k => k.AltKategoriId == AltKategoriId.Value);
-            }
-
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                kitaplarQuery = kitaplarQuery.Where(k => k.KitapAdi.ToUpper().Contains(SearchString.ToUpper()));
-            }
-
-            if (!String.IsNullOrEmpty(SearchString2))
-            {
-                kitaplarQuery = kitaplarQuery.Where(k => k.YazarAdi.ToUpper().Contains(SearchString2.ToUpper()));
-            }
-            var kitaplar = await kitaplarQuery.ToListAsync();
-
-
-            // SelectList için ViewBag'a geçerli verileri atayın
-            ViewBag.Kategoriler = new SelectList(_context.Kategorilers, "KategoriId", "KategoriAdi");
-
-            return View(kitaplar);
+            var bookStoreDbContext = _context.Kitaplars.Include(k => k.AltKategori);
+            return View(await bookStoreDbContext.ToListAsync());
         }
 
-
-
-        public IActionResult GetAltKategoriler(int kategoriId)
-        {
-            var altKategoriler = _context.AltKategorilers.Where(a => a.KategoriId == kategoriId).ToList();
-            return Json(altKategoriler);
-        }
-
-
-
-
-        // GET: Kitaplars/Details/5
+        // GET: Admin/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Kitaplars == null)
@@ -81,33 +48,22 @@ namespace BookStoreFinalProje.Controllers
             return View(kitaplar);
         }
 
-        // GET: Kitaplars/Create
+        // GET: Admin/Create
         public IActionResult Create()
         {
             ViewData["AltKategoriId"] = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriAdi");
             return View();
         }
 
-        // POST: Kitaplars/Create
+        // POST: Admin/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KitapId,KitapAdi,AltKategoriId,Fiyat,YayinTarihi,KitapAciklama,ImageFile,YazarAdi,StokMiktari")] Kitaplar kitaplar)
+        public async Task<IActionResult> Create([Bind("KitapId,KitapAdi,AltKategoriId,Fiyat,YayinTarihi,KitapAciklama,KitapFoto,YazarAdi,StokMiktari")] Kitaplar kitaplar)
         {
             if (ModelState.IsValid)
             {
-                string wwwrootpath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(kitaplar.ImageFile.FileName);
-                string extension = Path.GetExtension(kitaplar.ImageFile.FileName);
-                kitaplar.KitapFoto= fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwrootpath, "image", fileName);
-                using(var filestream = new FileStream(path, FileMode.Create))
-                {
-                    await kitaplar.ImageFile.CopyToAsync(filestream);
-                }
-
-
                 _context.Add(kitaplar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,7 +72,7 @@ namespace BookStoreFinalProje.Controllers
             return View(kitaplar);
         }
 
-        // GET: Kitaplars/Edit/5
+        // GET: Admin/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Kitaplars == null)
@@ -129,11 +85,11 @@ namespace BookStoreFinalProje.Controllers
             {
                 return NotFound();
             }
-            ViewData["AltKategoriId"] = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriAdi", kitaplar.AltKategoriId);
+            ViewData["AltKategoriId"] = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriId", kitaplar.AltKategoriId);
             return View(kitaplar);
         }
 
-        // POST: Kitaplars/Edit/5
+        // POST: Admin/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -165,11 +121,11 @@ namespace BookStoreFinalProje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AltKategoriId"] = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriAdi", kitaplar.AltKategoriId);
+            ViewData["AltKategoriId"] = new SelectList(_context.AltKategorilers, "AltKategoriId", "AltKategoriId", kitaplar.AltKategoriId);
             return View(kitaplar);
         }
 
-        // GET: Kitaplars/Delete/5
+        // GET: Admin/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Kitaplars == null)
@@ -188,7 +144,7 @@ namespace BookStoreFinalProje.Controllers
             return View(kitaplar);
         }
 
-        // POST: Kitaplars/Delete/5
+        // POST: Admin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

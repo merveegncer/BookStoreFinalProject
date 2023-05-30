@@ -36,11 +36,11 @@
     .button {
         display: inline-block;
         padding: 10px 20px;
-        background-color: #000000;
+        background-color: #03045e;
         color: #ffffff;
         text-decoration: none;
         border-radius: 4px;
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
         .button:hover {
@@ -60,29 +60,30 @@
         <h1 style="font-family: 'Playfair Display', serif; font-size: 60px; text-align: center;">Kitaplarla Hayatınıza Değer Katın</h1>
 
         <div>
-            <a href="/kitaplars" class="button">Tum kitaplari Kesfet</a>
+            <a asp-controller="Kitaplars" asp-action="Index" class="button-card"> Tum Kitaplari Kesfet</a>
         </div>
     </div>
 </div>
 
 <div class="container-fluid mt-5">
     <div class="container-fluid" style="margin-top: 200px; margin-bottom: 50px;">
-        <h1 style="font-family: 'Playfair Display', serif; font-size: 60px; text-align: center;">Yeni ve Popüler</h1>
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 60px; text-align: center;">Kitap Kategorileri</h1>
     </div>
 
     <div class="row">
         <div class="col-md-3">
-            <a href="KategoriSayfalar/Roman">
+            <a asp-controller="KategoriSayfalar" asp-action="Roman" class="card-link">
                 <div class="card card-category-1">
                     <div class="card-image">
                         <img src="~/image/RomanFoto.jpg" class="card-img-top" alt="Category 1 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Roman" class="button-card"> Roman</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="Roman" class="button-card"> Roman</a>
                     </div>
                 </div>
             </a>
         </div>
+
         <div class="col-md-3">
             <a href="Category2/Index">
                 <div class="card card-category-2">
@@ -90,7 +91,7 @@
                         <img src="~/image/Egitim.jpg" class="card-img-top" alt="Category 2 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Egitim" class="button-card">Egitim</a>
+                        <a style="font-family: 'Playfair Display', serif"  asp-controller="KategoriSayfalar" asp-action="Egitim" class="button-card"> Egitim</a>
                     </div>
                 </div>
             </a>
@@ -102,7 +103,7 @@
                         <img src="~/image/KisiselGelisim.jpg" class="card-img-top" alt="Category 3 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/KisiselGelisim" class="button-card">Kisisel Gelisim</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="KisiselGelisim" class="button-card"> Roman</a>
                     </div>
                 </div>
             </a>
@@ -114,7 +115,7 @@
                         <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 1 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Tarih" class="button-card">Tarih</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="Tarih" class="button-card"> Tarih</a>
                     </div>
                 </div>
             </a>
@@ -129,7 +130,7 @@
                         <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 5 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Din" class="button-card">Din</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="Din" class="button-card"> Din</a>
                     </div>
                 </div>
             </a>
@@ -141,7 +142,7 @@
                         <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 6 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Felsefe" class="button-card">Felsefe</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="Felsefe" class="button-card"> Felsefe</a>
                     </div>
                 </div>
             </a>
@@ -153,7 +154,7 @@
                         <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 7 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/BilimTeknoloji" class="button-card">Bilim Teknoloji</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="BilimTeknoloji" class="button-card"> Roman</a>
                     </div>
                 </div>
             </a>
@@ -165,7 +166,7 @@
                         <img src="~/image/Taarih.jpg" class="card-img-top" alt="Category 8 Image">
                     </div>
                     <div class="card-body">
-                        <a style="font-family: 'Playfair Display', serif" href="KategoriSayfalar/Roman" class="button-card">Category 1</a>
+                        <a style="font-family: 'Playfair Display', serif" asp-controller="KategoriSayfalar" asp-action="Roman" class="button-card"> Diger</a>
                     </div>
                 </div>
             </a>

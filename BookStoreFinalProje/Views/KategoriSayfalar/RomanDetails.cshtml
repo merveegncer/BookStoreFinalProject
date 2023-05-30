@@ -10,39 +10,21 @@
     <h4>Kitaplar</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.KitapAdi)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.KitapAdi)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.YazarAdi)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.YazarAdi)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.YayinTarihi)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.YayinTarihi)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.StokMiktari)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.StokMiktari)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AltKategori)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AltKategori.AltKategoriId)
-        </dd>
+        <dt class="col-sm-2">Kitap Adı:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.KitapAdi)</dd>
+        <dt class="col-sm-2">Yazar Adı:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.YazarAdi)</dd>
+        <dt class="col-sm-2">urun gorseli:</dt>
+        <dd class="col-sm-10"><img src="@Url.Content("~/image/" + Model.KitapFoto)" width="150" height="200" </dd>
+        <dt class="col-sm-2">Alt Kategori:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.AltKategori.AltKategoriAdi)</dd>
+        <dt class="col-sm-2">Yayın Tarihi:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.YayinTarihi)</dd>
+        <dt class="col-sm-2">Stok Miktarı:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.StokMiktari)</dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.KitapId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.KitapId">Edit</a> |
+    <a class="btn btn-primary" asp-action="Index">Back to List</a>
 </div>

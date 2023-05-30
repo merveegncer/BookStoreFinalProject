@@ -1,7 +1,20 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+
 using BookStoreFinalProje.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+builder.Services.AddControllersWithViews();
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+    AddCookie(option =>
+    {
+        option.LoginPath = "/Startp/Login";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+    });
 
 builder.Services.AddDbContext<BookStoreDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("Datacon"))
@@ -23,11 +36,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Startp}/{action=Login}/{id?}");
 
 app.Run();

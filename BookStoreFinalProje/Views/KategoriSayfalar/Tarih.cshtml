@@ -1,58 +1,49 @@
 ﻿@model IEnumerable<BookStoreFinalProje.Models.Kitaplar>
 
 @{
-    ViewData["Title"] = "Tarih";
+    ViewData["Title"] = "Roman";
 }
 
-<h1>Index</h1>
+
+</style>
+
+<h1 style="color: #9A8478;">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" style="color: #9A8478;">Create New</a>
 </p>
-<form asp-action="Tarih" asp-route-altKategoriId="@ViewBag.AltKategoriId" method="get">
-    <div class="form-horizontal">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label">Select by Category:</label>
-                @Html.DropDownList("AltKategoriId", ViewBag.AltKategoriId as SelectList, "All Category", htmlAttributes: new { @class = "form-control" })
-            </div>
-            <div class="form-group col-md-6">
-                <label class="control-label">Select by name:</label>
-                @Html.TextBox("SearchString",null,new{@class = "form-control"})
-            </div>
-
-            <div class="form-group col-md-4 align-self-end">
-                <input type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary">
-                <a asp-action="Tarih" class="btn btn-outline-dark">Clear</a>
-            </div>
+<form asp-action="Tarih" asp-route-altKategoriId="@ViewBag.AltKategoriId" method="get" class="filter-form">
+    <div class="row">
+        <div class="col-md-4 mb-2">
+            <label class="filter-label" style="color: #9A8478;">Select by Category:</label>
+            @Html.DropDownList("AltKategoriId", ViewBag.AltKategoriId as SelectList, "All Category", htmlAttributes: new { @class = "filter-input" })
+        </div>
+        <div class="col-md-4 mb-2">
+            <label class="filter-label" style="color: #9A8478;">Select by Name:</label>
+            @Html.TextBox("SearchString", null, new { @class = "filter-input" })
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" name="actionButton" value="Filter" class="btn btn-primary filter-button" style="background-color: #9A8478;">Filter</button>
+            <a asp-action="Tarih" class="btn btn-secondary filter-button" style="background-color: #D3C0B9;">Clear</a>
         </div>
     </div>
 </form>
 
-
-<table class="table">
-    <thead>
-    </thead>
-
-    <div style="padding-top: 50px" class="row">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.KitapAdi)</h5>
-                        <p class="card-text"><strong>Kitap adi:</strong> @Html.DisplayFor(modelItem => item.KitapAdi)</p>
-
-                        <p class="card-text"><strong>Yazar:</strong> @Html.DisplayFor(modelItem => item.YazarAdi)</p>
-
-                        <p class="card-text"><strong>Alt Kategori:</strong> @Html.DisplayFor(modelItem => item.AltKategori.AltKategoriAdi)</p>
-
-                        <div class="text-right">
-                            <a asp-action="RomanDetails" asp-route-id="@item.KitapId" class="btn btn-info">Details</a>
-                        </div>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 mb-4">
+            <div class="card book-card">
+                <img src="@Url.Content("~/image/" + item.KitapFoto)" asp-append-version="true" class="card-img-top" alt="Kitap Foto" style="height: 200px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px;" />
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #9A8478;">@Html.DisplayFor(modelItem => item.KitapAdi)</h5>
+                    <p class="card-text" style="color: #9A8478;"><strong>Author:</strong> @Html.DisplayFor(modelItem => item.YazarAdi)</p>
+                    <p class="card-text" style="color: #9A8478;"><strong>Category:</strong> @Html.DisplayFor(modelItem => item.AltKategori.AltKategoriAdi)</p>
+                    <div class="text-right">
+                        <a asp-action="RomanDetails" asp-route-id="@item.KitapId" class="btn btn-info" style="background-color: #9A8478;">Details</a>
                     </div>
                 </div>
             </div>
-        }
-    </div>
-</table>
+        </div>
+    }
+</div>

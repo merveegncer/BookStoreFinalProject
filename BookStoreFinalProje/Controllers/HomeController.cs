@@ -5,7 +5,10 @@ using System.Diagnostics;
 namespace BookStoreFinalProje.Controllers
 {
     public class HomeController : Controller
+
     {
+        
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
