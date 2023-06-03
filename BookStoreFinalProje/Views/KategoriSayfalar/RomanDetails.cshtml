@@ -4,27 +4,30 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Kitaplar</h4>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Url.Content("~/image/" + Model.KitapFoto)" width="250" height="350" />
+        </div>
+        <div class="col-md-8">
+            <h2>@Model.KitapAdi</h2>
+            <p><strong>Yazar:</strong> @Model.YazarAdi</p>
+            <p><strong>Alt Kategori:</strong> @Model.AltKategori.AltKategoriAdi</p>
+            <p><strong>Yayın Tarihi:</strong> @Model.YayinTarihi?.ToShortDateString() </p>
+            <p><strong>Stok Miktarı:</strong> @Model.StokMiktari</p>
+        </div>
+    </div>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">Kitap Adı:</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.KitapAdi)</dd>
-        <dt class="col-sm-2">Yazar Adı:</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.YazarAdi)</dd>
-        <dt class="col-sm-2">urun gorseli:</dt>
-        <dd class="col-sm-10"><img src="@Url.Content("~/image/" + Model.KitapFoto)" width="150" height="200" </dd>
-        <dt class="col-sm-2">Alt Kategori:</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.AltKategori.AltKategoriAdi)</dd>
-        <dt class="col-sm-2">Yayın Tarihi:</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.YayinTarihi)</dd>
-        <dt class="col-sm-2">Stok Miktarı:</dt>
-        <dd class="col-sm-10">@Html.DisplayFor(model => model.StokMiktari)</dd>
-    </dl>
-</div>
-<div>
-    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.KitapId">Edit</a> |
-    <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Açıklama</h4>
+            <p>@Model.KitapAciklama</p>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" asp-action="Index">Listeye Geri Dön</a>
+        </div>
+    </div>
 </div>

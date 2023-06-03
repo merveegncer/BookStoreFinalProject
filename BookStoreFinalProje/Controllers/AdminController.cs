@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BookStoreFinalProje.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Hosting;
 
 namespace BookStoreFinalProje.Controllers
 
@@ -16,6 +17,8 @@ namespace BookStoreFinalProje.Controllers
     public class AdminController : Controller
     {
         private readonly BookStoreDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
+
 
         public AdminController(BookStoreDbContext context)
         {
@@ -55,15 +58,26 @@ namespace BookStoreFinalProje.Controllers
             return View();
         }
 
-        // POST: Admin/Create
+        // POST: Kitaplars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("KitapId,KitapAdi,AltKategoriId,Fiyat,YayinTarihi,KitapAciklama,KitapFoto,YazarAdi,StokMiktari")] Kitaplar kitaplar)
+        public async Task<IActionResult> Create([Bind("KitapId,KitapAdi,AltKategoriId,Fiyat,YayinTarihi,KitapAciklama,ImageFile,YazarAdi,StokMiktari")] Kitaplar kitaplar)
         {
             if (ModelState.IsValid)
             {
+                string wwwrootpath = _hostEnvironment.WebRootPath;
+                string fileName = Path.GetFileNameWithoutExtension(kitaplar.ImageFile.FileName);
+                string extension = Path.GetExtension(kitaplar.ImageFile.FileName);
+                kitaplar.KitapFoto = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                string path = Path.Combine(wwwrootpath, "image", fileName);
+                using (var filestream = new FileStream(path, FileMode.Create))
+                {
+                    await kitaplar.ImageFile.CopyToAsync(filestream);
+                }
+
+
                 _context.Add(kitaplar);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
