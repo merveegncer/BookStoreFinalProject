@@ -3,6 +3,99 @@
 @{
     ViewData["Title"] = "Index";
 }
+<h1 class="header-title">Tüm Kitaplar</h1>
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="filter-sidebar">
+            <h4 class="filter-label">Filtreleme</h4>
+            <form asp-action="Index" asp-route-altKategoriId="@ViewBag.AltKategoriId" method="get">
+                <div class="form-group">
+                    <label class="filter-label">Kategori:</label>
+                    @Html.DropDownList("KategoriId", ViewBag.Kategoriler as SelectList, "Tüm Kategoriler", htmlAttributes: new { @class = "filter-input", id = "kategoriDropdown" })
+                </div>
+
+                <div class="form-group">
+                    <label class="filter-label">Alt Kategori:</label>
+                    @Html.DropDownList("AltKategoriId", new SelectList(Enumerable.Empty<SelectListItem>(), "AltKategoriId", "AltKategoriAdi"), "Tüm Alt Kategoriler", htmlAttributes: new { @class = "filter-input", id = "altKategoriDropdown" })
+                </div>
+
+                <div class="form-group">
+                    <label class="filter-label">Kitap Adı:</label>
+                    @Html.TextBox("SearchString", null, new { @class = "filter-input" })
+                </div>
+
+                <div class="form-group">
+                    <label class="filter-label">Yazar Adı:</label>
+                    @Html.TextBox("SearchString2", null, new { @class = "filter-input" })
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary">Filtrele</button>
+                    <a asp-action="Index" class="btn btn-outline-dark">Temizle</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 mb-4">
+                    <div class="card custom-card">
+                        <div class="card-header">
+                            <h5 class="card-title">@item.KitapAdi</h5>
+                        </div>
+                        <div class="card-body">
+                            <img src="@Url.Content("~/image/" + item.KitapFoto)" asp-append-version="true" class="card-img-top" alt="Kitap Foto" />
+                            <div class="card-content">
+                                <p class="card-text">@item.YazarAdi</p>
+                                <p class="card-text">@item.AltKategori.AltKategoriAdi</p>
+                                <p class="card-text">@item.Fiyat</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@Url.Action("Details", new { id = item.KitapId })" class="btn btn-info custom-button">Detaylar</a>
+                        </div>
+                    </div>
+                </div>
+                }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#kategoriDropdown").change(function () {
+                var kategoriId = $(this).val();
+                if (kategoriId) {
+                    $.ajax({
+                        url: "/Kitaplars/GetAltKategoriler",
+                        type: "GET",
+                        data: { kategoriId: kategoriId },
+                        success: function (response) {
+                            $("#altKategoriDropdown").empty();
+                            if (response.length > 0) {
+                                $.each(response, function (index, item) {
+                                    $("#altKategoriDropdown").append($('<option></option>').val(item.altKategoriId).text(item.altKategoriAdi));
+                                });
+                            } else {
+                                $("#altKategoriDropdown").append($('<option></option>').val('').text('Tüm Alt Kategoriler'));
+                            }
+                        }
+                    });
+                } else {
+                    $("#altKategoriDropdown").empty();
+                    $("#altKategoriDropdown").append($('<option></option>').val('').text('Tüm Alt Kategoriler'));
+                }
+            });
+        });
+    </script>
+}
+
 
 <style>
     .filter-sidebar {
@@ -84,93 +177,3 @@
     }
 </style>
 
-<h1 class="header-title">Tüm Kitaplar</h1>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="filter-sidebar">
-            <h4 class="filter-label">Filtreleme</h4>
-            <form asp-action="Index" asp-route-altKategoriId="@ViewBag.AltKategoriId" method="get">
-                <div class="form-group">
-                    <label class="filter-label">Kategori:</label>
-                    @Html.DropDownList("KategoriId", ViewBag.Kategoriler as SelectList, "Tüm Kategoriler", htmlAttributes: new { @class = "filter-input", id = "kategoriDropdown" })
-                </div>
-
-                <div class="form-group">
-                    <label class="filter-label">Alt Kategori:</label>
-                    @Html.DropDownList("AltKategoriId", new SelectList(Enumerable.Empty<SelectListItem>(), "AltKategoriId", "AltKategoriAdi"), "Tüm Alt Kategoriler", htmlAttributes: new { @class = "filter-input", id = "altKategoriDropdown" })
-                </div>
-
-                <div class="form-group">
-                    <label class="filter-label">Kitap Adı:</label>
-                    @Html.TextBox("SearchString", null, new { @class = "filter-input" })
-                </div>
-
-                <div class="form-group">
-                    <label class="filter-label">Yazar Adı:</label>
-                    @Html.TextBox("SearchString2", null, new { @class = "filter-input" })
-                </div>
-
-                <div class="text-right">
-                    <button type="submit" name="actionButton" value="Filter" class="btn btn-outline-primary">Filtrele</button>
-                    <a asp-action="Index" class="btn btn-outline-dark">Temizle</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="col-md-9">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-3 mb-4">
-                    <div class="card custom-card">
-                        <div class="card-header">
-                            <h5 class="card-title">@item.KitapAdi</h5>
-                        </div>
-                        <div class="card-body">
-                            <img src="@Url.Content("~/image/" + item.KitapFoto)" asp-append-version="true" class="card-img-top" alt="Kitap Foto" />
-                            <div class="card-content">
-                                <p class="card-text">@item.YazarAdi</p>
-                                <p class="card-text">@item.AltKategori.AltKategoriAdi</p>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="@Url.Action("Details", new { id = item.KitapId })" class="btn btn-info custom-button">Detaylar</a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $("#kategoriDropdown").change(function () {
-                var kategoriId = $(this).val();
-                if (kategoriId) {
-                    $.ajax({
-                        url: "/Kitaplars/GetAltKategoriler",
-                        type: "GET",
-                        data: { kategoriId: kategoriId },
-                        success: function (response) {
-                            $("#altKategoriDropdown").empty();
-                            if (response.length > 0) {
-                                $.each(response, function (index, item) {
-                                    $("#altKategoriDropdown").append($('<option></option>').val(item.altKategoriId).text(item.altKategoriAdi));
-                                });
-                            } else {
-                                $("#altKategoriDropdown").append($('<option></option>').val('').text('Tüm Alt Kategoriler'));
-                            }
-                        }
-                    });
-                } else {
-                    $("#altKategoriDropdown").empty();
-                    $("#altKategoriDropdown").append($('<option></option>').val('').text('Tüm Alt Kategoriler'));
-                }
-            });
-        });
-    </script>
-}

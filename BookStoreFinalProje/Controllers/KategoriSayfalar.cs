@@ -19,12 +19,7 @@ namespace BookStoreFinalProje.Controllers
         }
 
         // GET: KategoriSayfalar
-        public async Task<IActionResult> Index()
-        {
-            return _context.Kategorilers != null ?
-                        View(await _context.Kategorilers.ToListAsync()) :
-                        Problem("Entity set 'DbKitapTakipContext.Kategorilers'  is null.");
-        }
+       
 
 
         public async Task<IActionResult> Roman(int? AltKategoriId, string SearchString)
@@ -48,26 +43,6 @@ namespace BookStoreFinalProje.Controllers
 
             return View(kitaplar);
         }
-        public async Task<IActionResult> RomanDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
-
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
-
-            return View(kitaplar);
-        }
-
-
-
 
 
 
@@ -93,23 +68,7 @@ namespace BookStoreFinalProje.Controllers
 
             return View(kitaplar);
         }
-        public async Task<IActionResult> EgitimDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
 
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
-
-            return View(kitaplar);
-        }
 
 
 
@@ -131,23 +90,6 @@ namespace BookStoreFinalProje.Controllers
             }
 
             var kitaplar = await kitaplarQuery.ToListAsync();
-
-            return View(kitaplar);
-        }
-        public async Task<IActionResult> KisiselGelisimDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
-
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
 
             return View(kitaplar);
         }
@@ -174,25 +116,6 @@ namespace BookStoreFinalProje.Controllers
 
             return View(kitaplar);
         }
-        public async Task<IActionResult> TarihDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
-
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
-
-            return View(kitaplar);
-        }
-
-
 
 
         public async Task<IActionResult> Din(int? AltKategoriId, string SearchString)
@@ -213,23 +136,6 @@ namespace BookStoreFinalProje.Controllers
             }
 
             var kitaplar = await kitaplarQuery.ToListAsync();
-
-            return View(kitaplar);
-        }
-        public async Task<IActionResult> DinDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
-
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
 
             return View(kitaplar);
         }
@@ -257,24 +163,6 @@ namespace BookStoreFinalProje.Controllers
 
             return View(kitaplar);
         }
-        public async Task<IActionResult> FelsefeDetails(int? id)
-        {
-            if (id == null || _context.Kitaplars == null)
-            {
-                return NotFound();
-            }
-
-            var kitaplar = await _context.Kitaplars
-                .Include(k => k.AltKategori)
-                .FirstOrDefaultAsync(m => m.KitapId == id);
-            if (kitaplar == null)
-            {
-                return NotFound();
-            }
-
-            return View(kitaplar);
-        }
-
 
         public async Task<IActionResult> BilimTeknoloji(int? AltKategoriId, string SearchString)
         {
@@ -297,7 +185,8 @@ namespace BookStoreFinalProje.Controllers
 
             return View(kitaplar);
         }
-        public async Task<IActionResult> BilimTeknolojiDetails(int? id)
+
+        public async Task<IActionResult> RomanDetails(int? id)
         {
             if (id == null || _context.Kitaplars == null)
             {
@@ -319,6 +208,12 @@ namespace BookStoreFinalProje.Controllers
 
 
 
+        public async Task<IActionResult> Index()
+        {
+            return _context.Kategorilers != null ?
+                        View(await _context.Kategorilers.ToListAsync()) :
+                        Problem("Entity set 'DbKitapTakipContext.Kategorilers'  is null.");
+        }
 
 
 

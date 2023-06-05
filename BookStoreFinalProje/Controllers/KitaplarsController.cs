@@ -15,7 +15,7 @@ namespace BookStoreFinalProje.Controllers
         private readonly BookStoreDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        
+         
         public KitaplarsController(BookStoreDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;

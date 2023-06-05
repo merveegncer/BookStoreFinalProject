@@ -21,7 +21,7 @@ public partial class Kitaplar
     [Column("AltKategoriID")]
     public int? AltKategoriId { get; set; }
 
-    [Column(TypeName = "decimal(10, 2)")]
+    [Column(TypeName = "money")]
     public decimal? Fiyat { get; set; }
 
     [Column(TypeName = "date")]
@@ -33,6 +33,7 @@ public partial class Kitaplar
     [Column(TypeName = "varchar(100)")]
 
     [DisplayName("image full name")]
+    [Unicode(false)]
     public string? KitapFoto { get; set; }
 
     [NotMapped]
